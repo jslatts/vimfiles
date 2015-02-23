@@ -10,8 +10,9 @@ Bundle 'ctrlpvim/ctrlp.vim.git'
 Bundle 'pangloss/vim-javascript'
 Bundle 'mxw/vim-jsx'
 Bundle 'valloric/YouCompleteMe'
+Bundle 'bling/vim-airline'
 
-"turn plugins
+"turn on plugins
 syntax on
 filetype plugin indent on
 
@@ -24,6 +25,8 @@ set ignorecase
 set ofu=syntaxcomplete#Complete
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+"set airline to show buffers
+let g:airline#extensions#tabline#enabled = 1
 
 "Set theme
 colorscheme solarized
