@@ -1,0 +1,8 @@
+#Ignore vundle managed bundles
+bundle/
+
+#Git undo directory
+undo/
+
+# Whatever this is
+.netrwhist
