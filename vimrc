@@ -11,6 +11,8 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'mxw/vim-jsx'
 Bundle 'valloric/YouCompleteMe'
 Bundle 'bling/vim-airline'
+Bundle 'marijnh/tern_for_vim'
+Bundle 'scrooloose/syntastic'
 
 "turn on plugins
 syntax on
@@ -22,24 +24,41 @@ augroup save
   au FocusLost * wall
 augroup END
 set nohidden
-set nobackup
+
+"set nobackup
 set noswapfile
-set nowritebackup
+
+"set nowritebackup
 set autoread
 set autowrite
 set autowriteall
+
+"Remove trailing spaces
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+"autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
 
 "persistent-undo
 set undodir=~/.vim/undo
 set undofile
 set undolevels=1000
-set undoreload=10000 
+set undoreload=10000
 
 "autocomplete setup
 set completeopt=longest,menuone
 set ignorecase
 set ofu=syntaxcomplete#Complete
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+"Set up tern for JS
+autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 "set airline to show buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -73,6 +92,10 @@ let mapleader=";"
 "add change paste
 nmap <silent> cp "_cw<C-R>"<Esc>
 
+"add search and replace under cursor
+nnoremap <leader>s :%s/<C-r><C-w>/
+
+
 "Switch buffers
 noremap <D-}> :bnext<CR>
 noremap <D-{> :bprev<CR>
@@ -80,4 +103,20 @@ inoremap <D-}> <esc>:bnext<CR>
 inoremap <D-{> <esc>:bprev<CR>
 
 "Delete buffer
-map <leader>d :bd<cr> 
+map <leader>d :bd<cr>
+
+"Syntastic config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['jsxhint']
+let g:syntastic_javascript_jsxhint_args = "--babel"
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <leader>e :SyntasticCheck<CR>
+noremap <leader>m :SyntasticToggleMode<CR>
+
