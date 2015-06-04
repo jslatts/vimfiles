@@ -7,19 +7,22 @@ call vundle#rc()
 " Define bundles
 " Package management
 Bundle 'gmarik/vundle'
-" Fuzzy finder
-Bundle 'ctrlpvim/ctrlp.vim.git'
-" Javascript/JSX syntax highlighting
-Bundle 'pangloss/vim-javascript'
-Bundle 'mxw/vim-jsx'
-" Better autocomplete
-Bundle 'valloric/YouCompleteMe'
-" Buffer management/display
-Bundle 'bling/vim-airline'
-" Autocomplete for javascript (for YCM)
-Bundle 'marijnh/tern_for_vim'
-" External Syntax
-Bundle 'scrooloose/syntastic'
+
+if !has('win32')
+  " Fuzzy finder
+  Bundle 'ctrlpvim/ctrlp.vim.git'
+  " Javascript/JSX syntax highlighting
+  Bundle 'pangloss/vim-javascript'
+  Bundle 'mxw/vim-jsx'
+  " Better autocomplete
+  Bundle 'valloric/YouCompleteMe'
+  " Buffer management/display
+  Bundle 'bling/vim-airline'
+  " Autocomplete for javascript (for YCM)
+  Bundle 'marijnh/tern_for_vim'
+  " External Syntax
+  Bundle 'scrooloose/syntastic'
+endif
 
 "turn on plugins
 syntax on
