@@ -22,6 +22,8 @@ if !has('win32')
   Bundle 'marijnh/tern_for_vim'
   " External Syntax
   Bundle 'scrooloose/syntastic'
+  " Solarized Theme
+  Bundle 'altercation/vim-colors-solarized'
 endif
 
 "turn on plugins
@@ -65,7 +67,10 @@ set undoreload=10000
 set completeopt=longest,menuone
 set noignorecase
 set ofu=syntaxcomplete#Complete
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+if has('gui_running')
+  inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
 "Set up tern for JS
 autocmd FileType javascript setlocal omnifunc=tern#Complete
@@ -130,3 +135,5 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 nnoremap <leader>e :SyntasticCheck<CR>
 noremap <leader>m :SyntasticToggleMode<CR>
 
+"Solarized BG toggle
+call togglebg#map("<F5>")
