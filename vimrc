@@ -24,6 +24,10 @@ if !has('win32')
   Bundle 'scrooloose/syntastic'
   " Solarized Theme
   Bundle 'altercation/vim-colors-solarized'
+  " Git Gutter
+  Plugin 'airblade/vim-gitgutter'
+  " Fugitive (git)
+  Plugin 'tpope/vim-fugitive.git'
 endif
 
 "turn on plugins
@@ -75,8 +79,6 @@ endif
 "Set up tern for JS
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 
-"set airline to show buffers
-let g:airline#extensions#tabline#enabled = 1
 
 "Set theme
 colorscheme solarized
@@ -95,7 +97,8 @@ if has("gui_running")
   if has("gui_gtk2")
     set guifont=Inconsolata\ 12
   elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h12
+    "set guifont=Menlo\ Regular:h12
+    set guifont=Input\ Mono:h13
   elseif has("gui_win32")
     set guifont=Consolas:h11:cANSI
   endif
@@ -137,3 +140,22 @@ noremap <leader>m :SyntasticToggleMode<CR>
 
 "Solarized BG toggle
 call togglebg#map("<F5>")
+
+"Setup CtrlP mode
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_working_path_mode = 'a'
+
+"Configure code folding
+set foldmethod=indent
+set nofoldenable
+set foldlevel=2
+set foldnestmax=2
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
+"set airline to show buffers
+set laststatus=2
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
+let g:airline#extensions#hunks#enabled=1
+let g:airline#extensions#branch#enabled=1
