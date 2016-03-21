@@ -17,7 +17,8 @@ if !has('win32')
   " Better autocomplete
   Bundle 'valloric/YouCompleteMe'
   " Buffer management/display
-  Bundle 'bling/vim-airline'
+  Bundle 'vim-airline/vim-airline'
+  Bundle 'vim-airline/vim-airline-themes'
   " Autocomplete for javascript (for YCM)
   Bundle 'marijnh/tern_for_vim'
   " External Syntax
@@ -28,6 +29,10 @@ if !has('win32')
   Plugin 'airblade/vim-gitgutter'
   " Fugitive (git)
   Plugin 'tpope/vim-fugitive.git'
+  " Scratch Buffer
+  Plugin 'vim-scripts/scratch.vim.git'
+  " Writing environment
+  Plugin 'junegunn/goyo.vim.git'
 endif
 
 "turn on plugins
@@ -91,6 +96,9 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoindent
+
+"Minimum window width
+set winwidth=85
 
 "Set fonts
 if has("gui_running")
@@ -159,3 +167,12 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#hunks#enabled=1
 let g:airline#extensions#branch#enabled=1
+
+"fix line wrapping for writing mode
+set linebreak
+
+"make navigation of wrapped lines tolerable
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
