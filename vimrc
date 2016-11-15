@@ -33,6 +33,8 @@ if !has('win32')
   Plugin 'vim-scripts/scratch.vim.git'
   " Writing environment
   Plugin 'junegunn/goyo.vim.git'
+  " Vim motion/nav enhnancement
+  Plugin 'easymotion/vim-easymotion'
 endif
 
 "turn on plugins
@@ -119,8 +121,7 @@ let mapleader=";"
 nmap <silent> cp "_cw<C-R>"<Esc>
 
 "add search and replace under cursor
-nnoremap <leader>s :%s/<C-r><C-w>/
-
+nnoremap <leader>s :%r/<C-r><C-w>/
 
 "Switch buffers
 noremap <D-}> :bnext<CR>
@@ -176,3 +177,18 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
+"VIM Easy motion config
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+nmap f <Plug>(easymotion-bd-fl)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <leader>j <Plug>(easymotion-j)
+
