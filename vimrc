@@ -121,7 +121,7 @@ let mapleader=";"
 nmap <silent> cp "_cw<C-R>"<Esc>
 
 "add search and replace under cursor
-nnoremap <leader>s :%r/<C-r><C-w>/
+nnoremap <leader>s :%s/<C-r><C-w>/
 
 "Switch buffers
 noremap <D-}> :bnext<CR>
