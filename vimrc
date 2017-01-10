@@ -1,12 +1,11 @@
-"Load vundle
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" Define bundles
-" Package management
-Bundle 'gmarik/vundle'
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 if !has('win32')
   " Fuzzy finder
@@ -14,8 +13,6 @@ if !has('win32')
   " Javascript/JSX syntax highlighting
   Bundle 'pangloss/vim-javascript'
   Bundle 'mxw/vim-jsx'
-  " Better autocomplete
-  Bundle 'valloric/YouCompleteMe'
   " Buffer management/display
   Bundle 'vim-airline/vim-airline'
   Bundle 'vim-airline/vim-airline-themes'
@@ -35,11 +32,14 @@ if !has('win32')
   Plugin 'junegunn/goyo.vim.git'
   " Vim motion/nav enhnancement
   Plugin 'easymotion/vim-easymotion'
+  " Better autocomplete
+  Bundle 'valloric/YouCompleteMe'
 endif
 
-"turn on plugins
-syntax on
+call vundle#end()
 filetype plugin indent on
+
+syntax on
 
 "Set up auto write/reads
 augroup save
